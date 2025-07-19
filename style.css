@@ -1,0 +1,231 @@
+/* Basic Reset */
+body {
+    margin: 0;
+    font-family: 'MS Sans Serif', 'Arial', sans-serif; /* Fallback for classic font */
+    background-color: #008080; /* Windows 98 desktop teal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Hide scrollbars if desktop is smaller */
+}
+
+/* Global Windows 98 UI elements */
+.window {
+    background-color: #c0c0c0; /* Standard gray */
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 1px 1px 0px 1px #000; /* Subtle shadow */
+    width: 600px; /* Fixed width for the app */
+    height: 400px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For dropdown positioning */
+}
+
+.title-bar {
+    background: linear-gradient(to right, #000080, #1084d0); /* Blue gradient */
+    color: #fff;
+    padding: 3px 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-font-smoothing: none; /* Pixelated font */
+    font-size: 14px;
+    cursor: default; /* Not draggable in this simple version */
+}
+
+.title-bar-text {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-bar-controls button {
+    background-color: #c0c0c0;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    width: 16px;
+    height: 14px;
+    margin-left: 2px;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    -webkit-font-smoothing: none; /* Pixelated */
+}
+
+.title-bar-controls button:active {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    background-color: #d0d0d0;
+}
+
+/* Mimic min/max/close buttons */
+.title-bar-controls button[aria-label="Minimize"]::before { content: '—'; }
+.title-bar-controls button[aria-label="Maximize"]::before { content: '☐'; }
+.title-bar-controls button[aria-label="Close"]::before { content: 'X'; }
+
+
+.menu-bar {
+    background-color: #c0c0c0;
+    padding: 0 2px;
+    border-bottom: 1px solid #808080;
+    display: flex;
+    font-size: 13px;
+    position: relative; /* For dropdown */
+}
+
+.menu-item {
+    padding: 2px 8px;
+    cursor: default;
+    border: 1px solid transparent; /* For hover effect */
+}
+
+.menu-item:hover {
+    background-color: #000080;
+    color: #fff;
+    border: 1px solid #000080;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position below the menu bar */
+    left: 0;
+    background-color: #c0c0c0;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 1px 1px 0px 1px #000;
+    min-width: 150px;
+    z-index: 100; /* Ensure it's on top */
+    display: none; /* Hidden by default */
+    padding: 2px 0;
+}
+
+.dropdown-menu hr {
+    border: none;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #fff;
+    margin: 4px 0;
+}
+
+.dropdown-item {
+    padding: 2px 15px;
+    cursor: default;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.dropdown-item:hover {
+    background-color: #000080;
+    color: #fff;
+}
+
+.text-area {
+    flex-grow: 1; /* Takes up remaining space */
+    background-color: #fff;
+    border: 1px solid #808080; /* Internal border for text area */
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    padding: 5px;
+    font-family: 'Courier New', monospace; /* Monospaced font for typing */
+    font-size: 14px;
+    resize: none; /* No resizing by user */
+    outline: none; /* No ugly focus outline */
+    box-sizing: border-box; /* Include padding/border in size */
+}
+
+.status-bar {
+    background-color: #c0c0c0;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #808080;
+    padding: 2px 5px;
+    font-size: 12px;
+    height: 18px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+}
+
+.status-bar p {
+    margin: 0;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    padding: 0 8px 0 4px;
+    height: 14px;
+    line-height: 14px;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+/* Styles for the posts display window */
+#posts-window {
+    position: absolute; /* To position it relative to the desktop */
+    top: 50px; /* Example positioning */
+    left: 50%;
+    transform: translateX(-50%); /* Center it */
+    min-width: 500px;
+    height: 350px;
+    z-index: 99; /* Below the main app but above desktop */
+}
+
+.posts-display {
+    flex-grow: 1;
+    background-color: #fff;
+    border: 1px solid #808080;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    padding: 10px;
+    overflow-y: auto; /* Scroll for posts */
+    box-sizing: border-box;
+    font-family: 'MS Sans Serif', 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.post-item {
+    background-color: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    white-space: pre-wrap; /* Preserve line breaks */
+    word-wrap: break-word; /* Break long words */
+}
+
+.post-item strong {
+    color: #000080;
+}
+
+.post-item small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 11px;
+    border-top: 1px dashed #d0d0d0;
+    padding-top: 5px;
+}
