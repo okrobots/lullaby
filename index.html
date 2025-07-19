@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text.exe '98 - Post Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📝%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-text">Text.exe - Untitled</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <div class="menu-item" id="file-menu-btn">File</div>
+                <div class="menu-item" id="edit-menu-btn">Edit</div>
+                <div class="menu-item" id="help-menu-btn">Help</div>
+
+                <div class="dropdown-menu" id="file-dropdown">
+                    <div class="dropdown-item" id="new-post-btn">New Post</div>
+                    <div class="dropdown-item" id="view-posts-btn">View Posts</div>
+                    <hr>
+                    <div class="dropdown-item" id="exit-app-btn">Exit</div>
+                </div>
+            </div>
+            <textarea id="post-content" class="text-area" placeholder="Type your post here..."></textarea>
+            <div class="status-bar">
+                <p>Ready</p>
+            </div>
+        </div>
+
+        <div class="window hidden" id="posts-window">
+            <div class="title-bar">
+                <div class="title-bar-text">Posts - View</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close" id="close-posts-window-btn"></button>
+                </div>
+            </div>
+            <div class="posts-display" id="posts-display-area">
+                <p>No posts yet. Be the first to post!</p>
+            </div>
+            <div class="status-bar">
+                <p id="post-count-status">0 posts</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
